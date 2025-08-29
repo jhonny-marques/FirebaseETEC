@@ -1,5 +1,6 @@
 import { auth } from '../firebase/config';
 import { useAuth } from '../contexts/AuthContext'; // Importe o hook useAuth
+import Header from '../components/Header'
 
 function MainPage() {
   const { user } = useAuth(); // Acesse o objeto user do contexto
@@ -9,15 +10,15 @@ function MainPage() {
   };
 
   console.log(user)
-
+  const pageTitle = 'Página inicial.'
   return (
-    <div>
-      <h1>Página Principal</h1>
-      <p>Bem-vindo!</p>
-      {user.displayName && <p>Nome: {user.displayName}</p>}
-      {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />}
-      <button onClick={handleSignOut}>Logout</button>
-    </div>
+    <>
+    <Header pageTitle={pageTitle}>
+      <div>
+        <p>Bem-vindo!</p>
+      </div>
+    </Header>
+    </>
   );
 }
 
